@@ -1,0 +1,11 @@
+INDEX VERSION 1.134+C:\Spring Tool suite\webinsurance\.metadata\.plugins\org.eclipse.jdt.core
+3064865530.index
+2082717575.index
+1305352912.index
+2484618314.index
+1865797976.index
+3489749978.index
+166290683.index
+3902724076.index
+3455943320.index
+1478272897.index
