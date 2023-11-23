@@ -1,5 +1,0 @@
-package io.springboot.web.Entity;
-
-public class User {
-
-}
