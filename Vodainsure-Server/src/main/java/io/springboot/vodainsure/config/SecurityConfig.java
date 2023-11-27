@@ -35,7 +35,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers("/users/register","/users/authenticate").permitAll()
                 .and()
-                .authorizeHttpRequests().requestMatchers("/users/**")
+                .authorizeHttpRequests().requestMatchers("/users/**", "/addvehicle")
                 .authenticated().and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

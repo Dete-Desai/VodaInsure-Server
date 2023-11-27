@@ -8,8 +8,11 @@ import org.springframework.stereotype.Repository;
 import io.springboot.vodainsure.entity.User;
 
 
+
+
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer>{
-    // Optional<User> findByName(String username);
+   
     Optional <User> findByEmail(String username);
+   
 }
