@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.springboot.vodainsure.entity.User;
+
 import io.springboot.vodainsure.entity.Vehicle;
 import io.springboot.vodainsure.service.VehicleService;
 

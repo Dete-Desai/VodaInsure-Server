@@ -7,5 +7,5 @@ import io.springboot.vodainsure.entity.Vehicle;
 @Repository
 public interface VehicleRepository  extends JpaRepository<Vehicle, Integer>{
 
-    boolean existsByvehicleid(Integer vehicleid);
+    boolean existsByvehicleId(Integer vehicleId);
 } 

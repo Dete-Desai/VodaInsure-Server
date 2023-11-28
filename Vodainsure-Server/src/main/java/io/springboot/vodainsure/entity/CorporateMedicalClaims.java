@@ -9,52 +9,54 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+import java.time.LocalDate;
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Vehicle {
-    @Id
+public class CorporateMedicalClaims {
+
     @Getter
     @Setter
-    private int vehicleId;
+    @Id
+    private int corporateClaimId;
+
 
     @ManyToOne
+    @JoinColumn(name = "corporateId")
+    private CorporateMedicalCover corporateMedicalCover;
+
+     @ManyToOne
     @JoinColumn(name = "nationalId")
     private User user;
+    @Getter
+    @Setter
+    private LocalDate claimDate;
 
     @Getter
     @Setter
-    private String registrationNumber;
+    private String claimStatus;
 
     @Getter
     @Setter
-    private String chasisNumber;
+    private float claimAmount;
 
     @Getter
     @Setter
-    private String cvNumber;
+    private String claimDescription;
 
     @Getter
     @Setter
-    private Float vehicleValue;
+    private String claimType;
 
     @Getter
     @Setter
-    private String manufactureYear;
+    private String documentLink;
 
     @Getter
     @Setter
-    private String driverId;
-
-    @Getter
-    @Setter
-    private String driverExperience;
+    private String policyNumber;
 
 
-      public void setUser(User user) {
-        this.user = user;
-    }
 
 }
