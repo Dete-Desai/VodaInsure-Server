@@ -50,6 +50,14 @@ public class Vehicle {
 
     @Getter
     @Setter
+    private String vehicleCategory;
+
+    @Getter
+    @Setter
+    private String driverName;
+
+    @Getter
+    @Setter
     private String driverExperience;
 
 

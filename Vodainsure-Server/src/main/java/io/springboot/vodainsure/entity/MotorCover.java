@@ -28,9 +28,14 @@ public class MotorCover {
     @JoinColumn(name = "nationalId")
     private User user;
 
+    @Getter
+    @Setter
     @OneToOne
     @JoinColumn(name = "vehicleId")
-    private Vehicle vehicle;
+    private Vehicle vehicle;                                            
+    @Getter
+    @Setter
+    private String registrationNumber;
     @Getter
     @Setter
     private String policyNumber;

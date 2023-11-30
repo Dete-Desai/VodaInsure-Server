@@ -10,7 +10,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 @Entity
 @Data
-public class MotorClaims {
+public class MotorClaim {
     
     @Id
     @Getter
@@ -21,15 +21,13 @@ public class MotorClaims {
     @JoinColumn(name = "motorId")
     private MotorCover motorCover;
 
-    @ManyToOne
-    @JoinColumn(name = "vehicleId")
-    private Vehicle vehicle;
+    
     private String coverType;
     private String policyNumber;
     private LocalDate claimDate;
     private LocalDate expiryDate;
     private LocalDate clashDate;
     private String vehicleCategory;
-    private int driverId;
+    private String driverId;
     private String driverName;
 }
