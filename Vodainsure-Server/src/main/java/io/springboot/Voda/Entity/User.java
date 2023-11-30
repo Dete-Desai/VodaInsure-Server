@@ -1,8 +1,12 @@
 package io.springboot.Voda.Entity;
 
+import java.util.Set;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,6 +20,11 @@ public class User {
 	@Column(name="Fullname")
 	private String Fullname;
 	
+	@OneToOne(mappedBy="User")
+	private SelfmedicalCover selfMedicalCover;
+	
+	@ManyToMany(mappedBy="User")
+	private Set<SelfmedicalClaims>selfmedicalClaimsSet;
 
 	@Column(name="Email")
 	private String Email;

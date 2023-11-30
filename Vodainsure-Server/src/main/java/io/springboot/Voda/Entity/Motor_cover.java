@@ -1,11 +1,11 @@
 package io.springboot.Voda.Entity;
 
 import java.time.LocalDate;
+import java.util.Random;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
@@ -19,14 +19,9 @@ public class Motor_cover {
 			  //  drop table Motor_cover;
 	
 @Id
-@GeneratedValue(strategy=GenerationType.IDENTITY)
-@Column(name="MotorID")
+
 private Long MotorID;//six-digit Auto-generated
-@PrePersist
-public void generateSixDigitId() {
-  
-	this.MotorID = Long.parseLong(String.format("%06d", (int)(Math.random() * 1000000)));
-}
+
 @Column(name="Motor_Category")
 private String Motor_category;
 
@@ -58,7 +53,7 @@ private String Experience;
 private int NationalId;
 
 @Column(name="policy_number")
-private int policy_number;
+private String policy_number;
 
 @Column(name="Cover_type")
 private String Cover_type;
@@ -157,11 +152,11 @@ public void setNationalId(int nationalId) {
 	NationalId = nationalId;
 }
 
-public int getPolicy_number() {
+public String getPolicy_number() {
 	return policy_number;
 }
 
-public void setPolicy_number(int policy_number) {
+public void setPolicy_number(String policy_number) {
 	this.policy_number = policy_number;
 }
 
@@ -191,7 +186,7 @@ public void setExpirydate(LocalDate expirydate) {
 
 public Motor_cover(Long motorID, String motor_category, String registration_number, String chasis_Number,
 		String cv_number, String tonnage, float vehicle_value, int manufacture_year, int driver_ID, String experience,
-		int nationalId, int policy_number, String cover_type, LocalDate renewaldate, LocalDate expirydate) {
+		int nationalId, String policy_number, String cover_type, LocalDate renewaldate, LocalDate expirydate) {
 	super();
 	MotorID = motorID;
 	Motor_category = motor_category;
@@ -225,7 +220,13 @@ public String toString() {
 			+ Expirydate + "]";
 }
 
-
-
-
+@PrePersist
+public void generateSixDigitId() {
+    // Generate a random six-digit number
+    this.MotorID = (long) generateRandomNumber();
+}
+private static int generateRandomNumber() {
+    Random random = new Random();
+    return random.nextInt(900000) + 100000;
+}
 }
