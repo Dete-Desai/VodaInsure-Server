@@ -35,7 +35,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers("/users/register","/users/authenticate").permitAll()
                 .and()
-                .authorizeHttpRequests().requestMatchers("/users/**", "/addvehicle","/updatemotorcover", "/{vehicleId}/updatemotorcover","/{motorId}/updatemotorclaim", "/test")
+                .authorizeHttpRequests().requestMatchers("/users/**", "/addvehicle","/updatemotorcover", "/{vehicleId}/updatemotorcover","/{motorId}/updatemotorclaim", "/addselfcover", "/addcorporatecover","/{selfId}/updateselfclaim" ,"/{corporateId}/updatecorporateclaim")
                 .authenticated().and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

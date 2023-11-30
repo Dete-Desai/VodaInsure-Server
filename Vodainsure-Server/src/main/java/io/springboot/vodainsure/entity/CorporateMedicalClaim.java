@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CorporateMedicalClaims {
+public class CorporateMedicalClaim {
 
     @Getter
     @Setter
@@ -26,9 +26,10 @@ public class CorporateMedicalClaims {
     @JoinColumn(name = "corporateId")
     private CorporateMedicalCover corporateMedicalCover;
 
-     @ManyToOne
-    @JoinColumn(name = "nationalId")
-    private User user;
+    @Getter
+    @Setter
+    private int nationalId;
+    
     @Getter
     @Setter
     private LocalDate claimDate;

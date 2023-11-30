@@ -67,5 +67,17 @@ public class User {
      @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MotorCover> motorCovers = new ArrayList<>();
 
+    @Getter
+    @Setter
+     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SelfMedicalCover> selfMedicalCovers = new ArrayList<>();
+
+     @Getter
+    @Setter
+     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CorporateMedicalCover> corporateMedicalCovers = new ArrayList<>();
+
+
+
 
 }

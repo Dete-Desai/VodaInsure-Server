@@ -19,9 +19,7 @@ public class MotorClaim {
 
     @ManyToOne
     @JoinColumn(name = "motorId")
-    private MotorCover motorCover;
-
-    
+    private MotorCover motorCover;    
     private String coverType;
     private String policyNumber;
     private LocalDate claimDate;
