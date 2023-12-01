@@ -15,14 +15,19 @@ public class SelfmedicalClaims {
 
  @Column(name = "SelfId")
   private Integer SelfId;
+ 
+ @ManyToOne
+ @JoinColumn(name = "selfId", insertable = false, updatable = false, referencedColumnName = "selfId")
+ private SelfmedicalCover selfmedicalCover;
+
+ @ManyToMany
+ @JoinTable(
+     name = "user_selfmedicalClaimSet",
+     joinColumns = @JoinColumn(name = "selfmedicalclaimId"),
+     inverseJoinColumns = @JoinColumn(name = "NationalId")
+     )
+ private Set<User>users;
     
-  @ManyToOne
-  @JoinColumn(name="SelfId")
-private SelfmedicalCover selfmedicalCover;
-    
-  @ManyToOne
-  @JoinColumn(name = "NationalId")  
-   private User user;
     
     @Column(name = "claimdate")
     private LocalDateTime claimdate;

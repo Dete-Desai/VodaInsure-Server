@@ -7,6 +7,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
@@ -18,29 +20,31 @@ import jakarta.persistence.Table;
 
 
 public class SelfmedicalCover {
-     @jakarta.persistence.Id
+     @Id
 	private Integer SelfId;
+
+     @OneToOne
+     @JoinColumn(name="NationalId",referencedColumnName = "NationalId")
+     private User user;
+     
+     @OneToMany(mappedBy="selfmedicalCover")
+     private Set<SelfmedicalClaims>selfmedicalClaimsSet;
+    
      
      @Column(name="MembershipType")
      private String MembershipType;
      
-     @OneToOne(mappedBy="SelfmedicalCover")
-     private User user;
-     
-     @OneToMany(mappedBy="SelfmedicalCover")
-     private Set<SelfmedicalClaims>selfmedicalClaimSet;
-     
-     @Column(name="familyMembers")
-     private int familyMembers;
-     
+    
      @Column(name="medicalcoverType")
      private String medicalcoverType;
      
      @Column(name="policy_number")
      private String policy_number;
      
-     @Column(name="NationalId")
-     private int NationalId;
+     @Column(name="NationalId",insertable=false,updatable=false)
+     private Integer NationalId;
+
+	private Integer familyMembers;
 
 	public long getId() {
 		return SelfId;
@@ -59,7 +63,7 @@ public class SelfmedicalCover {
 	}
 
 	public int getFamilyMembers() {
-		return familyMembers;
+		return getFamilyMembers();
 	}
 
 	public void setFamilyMembers(int familyMembers) {
