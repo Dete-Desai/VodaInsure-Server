@@ -2,6 +2,7 @@ package io.springboot.Voda.Service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -13,6 +14,8 @@ import io.springboot.Voda.Repository.UserRepository;
 @Service
 @Transactional
 public class UserService {
+	 @Autowired
+	   
 	private final  UserRepository userRepository;
 	public UserService(UserRepository userRepository) {
 		this.userRepository=userRepository;
@@ -32,8 +35,8 @@ public class UserService {
    public User getUserByPhonenumber(String phonenumber) {
 	   return userRepository.findByPhonenumber(phonenumber);
    }
-   public User loginUserByEmailAndPassword(String Email, String password) {
-       return userRepository.findByEmailAndPassword(Email, password);
+   public User loginUserByEmailAndPassword(String Email, String Password) {
+       return userRepository.findByEmailAndPassword(Email, Password);
    }
 
  public User LoginUserByPhonenumberAndPassword(String Phonenumber,String password) {

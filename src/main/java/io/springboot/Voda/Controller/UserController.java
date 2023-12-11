@@ -23,12 +23,12 @@ public class UserController {
     }
 
   @PostMapping("/login")
-   public User loginUser(@RequestParam String email, @RequestParam String password) {
-   return userService.loginUser(email, password);
+   public User loginUser(@RequestParam String email, @RequestParam String Password) {
+   return userService.loginUser(email, Password);
     }
 
   @PostMapping("/loginByPhoneNumber")
-  public User loginUserByPhone(@RequestParam String phonenumber, @RequestParam String password) {
-      return userService.loginUserbyphone(phonenumber, password);
+  public User loginUserByPhone(@RequestParam String phonenumber, @RequestParam String Password) {
+      return userService.loginUserbyphone(phonenumber, Password);
 }
 }

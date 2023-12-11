@@ -31,10 +31,10 @@ public class UserServiceImpl implements UserServiceInterface {
     }
 
   @Override
-  public User loginUserbyphone(String phonenumber, String password) {
+  public User loginUserbyphone(String phonenumber, String Password) {
    User user = userRepository.findByPhonenumber(phonenumber);
 
-   if (user != null && user.getPassword().equals(password)) {
+   if (user != null && user.getPassword().equals(Password)) {
      return user;
         }
         return null;

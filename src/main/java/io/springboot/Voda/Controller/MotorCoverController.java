@@ -28,7 +28,7 @@ private MotorCoverServiceImpli MotorCoverService;
  return MotorCoverService.saveMotor_cover(motor_cover);
 
 }
- @GetMapping("/get/{MotorID;}")
+ @GetMapping("/get/{MotorID}")
  public Motor_cover getMotor_coverById(@PathVariable Integer MotorID) {
  return MotorCoverService.getMotor_coverById(MotorID);
 }
