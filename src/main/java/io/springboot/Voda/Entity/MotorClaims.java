@@ -1,7 +1,10 @@
 package io.springboot.Voda.Entity;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
+import java.util.HashSet;
+import java.util.Set;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,10 +17,10 @@ import jakarta.persistence.Table;
 
 public class MotorClaims {
 @Id
-private Long ClaimId;
+private Integer ClaimId;
 
 @Column(name="MotorID")
-private int MotorID;
+private Integer MotorID;
 
 @Column(name="Registration_number")
 private String Registration_number;
@@ -49,11 +52,11 @@ private String Driver_ID;
 @Column(name="Driver_Name")
 private String Driver_Name;
 
-public Long getClaimId() {
+public Integer getClaimId() {
 	return ClaimId;
 }
 
-public void setClaimId(Long claimId) {
+public void setClaimId(Integer claimId) {
 	ClaimId = claimId;
 }
 
@@ -145,7 +148,7 @@ public void setDriver_Name(String driver_Name) {
 	Driver_Name = driver_Name;
 }
 
-public MotorClaims(Long claimId, int motorID, String registration_number, String cover_type, String policy_number,
+public MotorClaims(Integer claimId, int motorID, String registration_number, String cover_type, String policy_number,
 		LocalDateTime claimdate, int nationalId, LocalDateTime clashdate, LocalDateTime exprirydate,
 		String vehicle_category, String driver_ID, String driver_Name) {
 	super();
@@ -178,13 +181,24 @@ public String toString() {
 
 
 @PrePersist
-public void generateUniqueFiveDigitId1() {
-    this.ClaimId = generateUniqueFiveDigitId();
+public void generateUniqueFivetDigitId1() {
+    this.ClaimId = generateUniqueFivetDigitId();
 }
 
-private static long generateUniqueFiveDigitId() {
-    return Long.parseLong(UUID.randomUUID().toString().replaceAll("-", "").substring(0, 5));
-}
+private static Set<Integer> generatedNumbers = new HashSet<>();
+
+private Integer generateUniqueFivetDigitId() {
+    int uniqueNumber;
+    do {
+        uniqueNumber = ThreadLocalRandom.current().nextInt(10000, 99999);
+    } while (!generatedNumbers.add(uniqueNumber));
+
+    return uniqueNumber;
 
 }
+}
+
+
+
+
 

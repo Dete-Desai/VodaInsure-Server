@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import io.springboot.Voda.Entity.MotorClaims;
 
-public interface MotorClaimsRepository  extends JpaRepository<MotorClaims,Integer>{
+public interface MotorClaimsRepository  extends JpaRepository<MotorClaims ,Integer>{
 
 }
