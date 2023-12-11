@@ -1,9 +1,14 @@
 package io.springboot.Voda.Repository;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
 
 import io.springboot.Voda.Entity.Motor_cover;
 
-public interface MotorcoverRepository extends CrudRepository<Motor_cover,Long>{
+public interface MotorcoverRepository extends JpaRepository<Motor_cover,Long>{
+
+	Optional<Motor_cover> findById(Integer motorID);
 
 }

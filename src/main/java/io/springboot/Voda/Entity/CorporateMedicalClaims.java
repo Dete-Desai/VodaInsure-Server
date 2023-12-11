@@ -16,10 +16,10 @@ public class CorporateMedicalClaims {
 	
  
 @Id
-	private Long CorporatemedicalClaimId;
+	private Integer CorporatemedicalClaimId;
 
 @Column(name="CorporateId")
-private int CorporateId;
+private Integer CorporateId;
 
 @Column(name="ClaimDate")
 private LocalDate ClaimDate;
@@ -45,11 +45,11 @@ private String Policy_number;
 @Column(name="NationalId")
 private String NationalId;
 
-public Long getCorporatemedicalClaimId() {
+public Integer getCorporatemedicalClaimId() {
 	return CorporatemedicalClaimId;
 }
 
-public void setCorporatemedicalClaimId(Long corporatemedicalClaimId) {
+public void setCorporatemedicalClaimId(Integer corporatemedicalClaimId) {
 	CorporatemedicalClaimId = corporatemedicalClaimId;
 }
 
@@ -125,7 +125,7 @@ public void setNationalId(String nationalId) {
 	NationalId = nationalId;
 }
 
-public CorporateMedicalClaims(Long corporatemedicalClaimId, int corporateId, LocalDate claimDate, String claimStatus,
+public CorporateMedicalClaims(Integer corporatemedicalClaimId, int corporateId, LocalDate claimDate, String claimStatus,
 		float claimAmount, String claimDescription, String claimType, String documentLink, String policy_number,
 		String nationalId) {
 	super();
@@ -158,8 +158,8 @@ public void generateUniqueSevenDigitId1() {
     this.CorporatemedicalClaimId = generateUniqueSevenDigitId();
 }
 
-private static long generateUniqueSevenDigitId() {
-    return Long.parseLong(UUID.randomUUID().toString().replaceAll("-", "").substring(0, 7));
+private static Integer generateUniqueSevenDigitId() {
+    return (int) Long.parseLong(UUID.randomUUID().toString().replaceAll("-", "").substring(0, 7));
 }
 
 }

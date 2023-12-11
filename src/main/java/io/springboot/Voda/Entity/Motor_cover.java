@@ -20,7 +20,7 @@ public class Motor_cover {
 	
 @Id
 
-private Long MotorID;//six-digit Auto-generated
+private Integer MotorID;//six-digit Auto-generated
 
 @Column(name="Motor_Category")
 private String Motor_category;
@@ -64,11 +64,11 @@ private LocalDate Renewaldate ;//cover_Renewaldate
 @Column(name="Expirydate")
 private LocalDate Expirydate;//cover_exprirydate
 
-public Long getMotorID() {
+public Integer getMotorID() {
 	return MotorID;
 }
 
-public void setMotorID(Long motorID) {
+public void setMotorID(Integer motorID) {
 	MotorID = motorID;
 }
 
@@ -184,7 +184,7 @@ public void setExpirydate(LocalDate expirydate) {
 	this.Expirydate = expirydate;
 }
 
-public Motor_cover(Long motorID, String motor_category, String registration_number, String chasis_Number,
+public Motor_cover(Integer motorID, String motor_category, String registration_number, String chasis_Number,
 		String cv_number, String tonnage, float vehicle_value, int manufacture_year, int driver_ID, String experience,
 		int nationalId, String policy_number, String cover_type, LocalDate renewaldate, LocalDate expirydate) {
 	super();
@@ -223,7 +223,7 @@ public String toString() {
 @PrePersist
 public void generateSixDigitId() {
     // Generate a random six-digit number
-    this.MotorID = (long) generateRandomNumber();
+    this.MotorID = (Integer) generateRandomNumber();
 }
 private static int generateRandomNumber() {
     Random random = new Random();

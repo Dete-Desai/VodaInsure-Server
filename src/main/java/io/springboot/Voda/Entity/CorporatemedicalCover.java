@@ -18,7 +18,7 @@ public class CorporatemedicalCover {
 	
 
 	@Id		    
-	private Long CorporateID;
+	private Integer CorporateID;
 	
 	@Column(name="CompanyName")
 	private String CompanyName;
@@ -38,11 +38,11 @@ public class CorporatemedicalCover {
 	@Column(name="NationalId")
 	private int NationalId;
 
-	public Long getCorporateID() {
+	public Integer getCorporateID() {
 		return CorporateID;
 	}
 
-	public void setCorporateID(Long corporateID) {
+	public void setCorporateID(Integer corporateID) {
 		CorporateID = corporateID;
 	}
 
@@ -122,8 +122,8 @@ public class CorporatemedicalCover {
 	        this.CorporateID = generateUniqueSixDigitId();
 	    }
 
-	  private static long generateUniqueSixDigitId() {
-		    return Long.parseLong(UUID.randomUUID().toString().replaceAll("-", "").substring(0, 6));
+	  private static Integer generateUniqueSixDigitId() {
+		    return (int) Long.parseLong(UUID.randomUUID().toString().replaceAll("-", "").substring(0, 6));
 	  }
 	  
 

@@ -37,9 +37,9 @@ public class Motor_coverService {
         
 
 }
-    private Long generateSixDigitRandomNumber() {
+    private Integer generateSixDigitRandomNumber() {
         // Generate a random six-digit number
-        return Long.parseLong(String.format("%06d", (int) (Math.random() * 1000000)));
+        return (int) Long.parseLong(String.format("%06d", (int) (Math.random() * 1000000)));
     }
 
     }
