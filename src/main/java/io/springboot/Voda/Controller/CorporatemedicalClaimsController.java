@@ -27,7 +27,7 @@ public class CorporatemedicalClaimsController {
 	  return corporateMedicalClaimsService.getCorporateMedicalClaimsById(CorporatemedicalClaimId);
 
 	 }
-	 @GetMapping
+	 @GetMapping("All")
 	  public List<CorporateMedicalClaims> getAllcorparateClaims() {
 	  return corporateMedicalClaimsService.getAllCorporateClaims();
 	 }

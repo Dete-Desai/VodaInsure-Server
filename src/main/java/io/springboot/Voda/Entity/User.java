@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "User")
@@ -36,9 +37,19 @@ public class User {
     private String Country;
 
     @Column(name = "Password")
-    private String Password;
+    private String password;
+    @Transient
+    private String plainPassword;
 
-    public Integer getNationalId() {
+    public String getPlainPassword() {
+		return plainPassword;
+	}
+
+	public void setPlainPassword(String plainPassword) {
+		this.plainPassword = plainPassword;
+	}
+
+	public Integer getNationalId() {
         return NationalId;
     }
 
@@ -79,11 +90,11 @@ public class User {
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
     public void setPassword(String password) {
-        Password = password;
+        this.password = password;
     }
 
     public User(Integer nationalId, String fullname, String email, String phonenumber, String country, String password) {
@@ -93,7 +104,7 @@ public class User {
         this.email = email;
         this.phonenumber = phonenumber;
         Country = country;
-        Password = password;
+        this.password = password;
     }
 
     public User() {
@@ -103,6 +114,15 @@ public class User {
     @Override
     public String toString() {
         return "User [NationalId=" + NationalId + ", Fullname=" + Fullname + ", Email=" + email + ", Phonenumber="
-                + phonenumber + ", Country=" + Country + ", Password=" + Password + "]";
+                + phonenumber + ", Country=" + Country + ", Password=" + password + "]";
     }
+
+	
+		
+	
+
+	public void setUserId(int userId) {
+		// TODO Auto-generated method stub
+		
+	}
 }

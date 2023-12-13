@@ -14,7 +14,7 @@ public class DriverController {
     @Autowired
     private DriverService driverService;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<Driver> getAllDrivers() {
         return driverService.getAllDrivers();
     }

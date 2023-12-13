@@ -29,7 +29,7 @@ public class MotorController {
                     .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping
+    @PostMapping("/new")
     public ResponseEntity<Motor> saveMotor(@RequestBody Motor motor) {
         Motor savedMotor = motorService.saveMotor(motor);
         return new ResponseEntity<>(savedMotor, HttpStatus.CREATED);
