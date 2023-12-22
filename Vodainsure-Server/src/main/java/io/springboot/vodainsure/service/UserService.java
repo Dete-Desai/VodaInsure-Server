@@ -2,6 +2,8 @@ package io.springboot.vodainsure.service;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,13 +19,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.security.crypto.password.PasswordEncoder;
 import io.springboot.vodainsure.exception.UserNotFoundException;
 import io.springboot.vodainsure.config.CustomUserDetails;
+import io.springboot.vodainsure.dto.AuthRequest;
 import io.springboot.vodainsure.dto.UserDTO;
 // import io.springboot.vodainsure.config.MyUserDetails;
 import io.springboot.vodainsure.entity.User;
 // import org.mindrot.jbcrypt.BCrypt;
 // import org.mindrot.jbcrypt.BCrypt;
 import org.modelmapper.ModelMapper;
-
+import org.springframework.security.core.Authentication;
+import org.springframework.security.authentication.AuthenticationManager;
 import io.springboot.vodainsure.repository.UserRepository;
 import jakarta.servlet.http.HttpSession;
 import io.springboot.vodainsure.service.ModelMapperConfig;
@@ -34,13 +38,12 @@ public class UserService {
     @Autowired
 private UserRepository userRepository;
 
+@Autowired
+private AuthenticationManager authenticationManager;
+@Autowired
+private JwtService jwtService;
 
 
-
-//   public MyUserDetails currentUser() {
-//         SecurityContext context = SecurityContextHolder.getContext();
-//         return (MyUserDetails) context.getAuthentication().getPrincipal();
-//     }
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -51,32 +54,17 @@ private UserRepository userRepository;
         return "user added to system ";
     }
 
+  public String authenticateAndGetToken(AuthRequest authRequest) {
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
+        );
 
-// public User registUser(User user){
-//     String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
-//     user.setPassword(hashedPassword);
-//     return userRepository.save(user);
-// }
-
-// public String authenticateUser(User user, HttpSession session) {
-//     User storedUser = userRepository.findByEmail(user.getEmail());
-//     if (storedUser != null && BCrypt.checkpw(user.getPassword(), storedUser.getPassword())) {
-//         session.setAttribute("user", storedUser);
-//         return "Authentication successful!";
-//     } else {
-//         return "Authentication failed!";
-//     }
-// }
-//    public ResponseEntity<Object> authenticateUser1(User user, HttpSession session) {
-//        User storedUser = userRepository.findByEmail(user.getEmail());
-
-//        if (storedUser != null && BCrypt.checkpw(user.getPassword(), storedUser.getPassword())) {
-//            session.setAttribute("user", storedUser);
-//            return ResponseEntity.ok().body(Map.of("status", "success", "message", "Authentication successful"));
-//        } else {
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("status", "error", "message", "Authentication failed"));
-//        }
-//    }
+        if (authentication.isAuthenticated()) {
+            return jwtService.generateToken(authRequest.getUsername());
+        } else {
+            throw new UsernameNotFoundException("Invalid user request!");
+        }
+    }
 
 
 

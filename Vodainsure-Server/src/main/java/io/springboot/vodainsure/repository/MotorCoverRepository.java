@@ -9,6 +9,7 @@ import io.springboot.vodainsure.entity.MotorCover;
 @Repository
 public interface MotorCoverRepository extends JpaRepository<MotorCover, Integer > {
     boolean existsBymotorId(Integer motorId);
+    boolean existsBypolicyNumber(String policyNumber);
     MotorCover findByMotorId(Integer MotorId);
 }
 

@@ -48,7 +48,7 @@ public class Vehicle {
 
     @Getter
     @Setter
-    private Float vehicleValue;
+    private String vehicleValue;
 
     @Getter
     @Setter

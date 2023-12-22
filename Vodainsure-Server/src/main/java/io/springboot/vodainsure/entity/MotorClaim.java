@@ -1,54 +1,55 @@
 package io.springboot.vodainsure.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import io.springboot.vodainsure.utils.CustomDateDeserializer;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDate;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 @Entity
 @Data
+@Getter
+@Setter
 public class MotorClaim {
-    
+
     @Id
-    @Getter
-    @Setter  
     private int motorClaimId;
 
+
+
+
     @ManyToOne
-    @JoinColumn(name = "motorId")
+    @JoinColumn(name = "nationalId")
     @JsonBackReference
-    private MotorCover motorCover;
-    @Getter
-    @Setter
-    private String coverType;
-    @Getter
-    @Setter
+    private User user;
+
+    private int motorId;
+
+
     private String policyNumber;
 
-    @Getter
-    @Setter
-    private int nationalId;
 
-    @Getter
-    @Setter
+    private String claimType;
+
+    @JsonDeserialize(using = CustomDateDeserializer.class)
     private LocalDate claimDate;
-    @Getter
-    @Setter
+
+    @JsonDeserialize(using = CustomDateDeserializer.class)
     private LocalDate expiryDate;
-    @Getter
-    @Setter
+
+    @JsonDeserialize(using = CustomDateDeserializer.class)
     private LocalDate clashDate;
-    @Getter
-    @Setter
+
     private String make;
-    @Getter
-    @Setter
+
+    private String amount;
+
+    private  String claimDescription;
+
     private String driverId;
-    @Getter
-    @Setter
+
     private String driverName;
 }

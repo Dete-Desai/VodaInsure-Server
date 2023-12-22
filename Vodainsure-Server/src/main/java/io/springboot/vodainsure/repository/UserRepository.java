@@ -13,7 +13,7 @@ import io.springboot.vodainsure.entity.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer>{
-//    @Query(value = "select * from user where full_name = ?1", nativeQuery = true)
+
     Optional<User> findByEmail(String username);
     // User findByEmail(String email);
     User findBynationalId(Integer nationalId);

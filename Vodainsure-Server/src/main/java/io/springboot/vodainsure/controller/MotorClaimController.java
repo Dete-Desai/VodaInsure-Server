@@ -11,24 +11,26 @@
  import java.util.List;
 
  @RestController
+ @RequestMapping("/motorclaim")
  public class MotorClaimController {
     
 
      @Autowired
      private MotorClaimService motorClaimService;
 
-     @PostMapping("/addmotorclaim/{motorId}")
-     public MotorClaim makeMotorClaim (HttpSession session, @RequestBody MotorClaim motorClaim, @PathVariable Integer motorId){
+     @PostMapping("/makemotorclaim/{motorId}")
+     public MotorClaim makeMotorClaim (
+      @RequestBody MotorClaim motorClaim, @PathVariable Integer motorId){
 
-         return motorClaimService.addMotorClaim(session, motorClaim, motorId);
+         return motorClaimService.addMotorClaim( motorClaim, motorId);
      }
      @GetMapping("/getmotorclaim/{motorClaimId}")
-     public MotorClaim getMotorCover(@PathVariable Integer motorClaimId){
+     public MotorClaim getMotorClaim (@PathVariable Integer motorClaimId){
          return  motorClaimService.getMotorClaim(motorClaimId);
      }
 
-     @GetMapping("getmotorclaims/{motorId}")
-     public List<MotorClaim> getMotorCovers (@PathVariable Integer motorId){
-         return motorClaimService.getMotorClaims(motorId);
+     @GetMapping("getmotorclaims/{nationalId}")
+     public List<MotorClaim> getMotorClaims (@PathVariable Integer nationalId){
+         return motorClaimService.getMotorClaims(nationalId);
      }
  }

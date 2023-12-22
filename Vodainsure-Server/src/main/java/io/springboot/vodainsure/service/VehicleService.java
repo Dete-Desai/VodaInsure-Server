@@ -24,8 +24,7 @@ import io.springboot.vodainsure.config.CustomUserDetails;
      private UserRepository userRepository;
 
    
-     public Vehicle saveVehicle (HttpSession session, Vehicle vehicle){
-      
+     public Vehicle saveVehicle ( Vehicle vehicle){      
 
           int randomValue ;
          do {
@@ -41,6 +40,8 @@ import io.springboot.vodainsure.config.CustomUserDetails;
          vehicle.setUser(user);
          return  vehicleRepository.save(vehicle);
      }
+     
+     
      public Vehicle getVehicle(Integer vehicleId) {
         Vehicle vehicle = vehicleRepository.findByVehicleId(vehicleId);
         if (vehicle != null){

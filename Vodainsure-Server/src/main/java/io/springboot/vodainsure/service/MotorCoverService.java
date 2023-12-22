@@ -7,6 +7,7 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import io.springboot.vodainsure.config.CustomUserDetails;
 // import io.springboot.vodainsure.config.MyUserDetails;
 import io.springboot.vodainsure.entity.MotorCover;
 import io.springboot.vodainsure.entity.User;
@@ -28,8 +29,9 @@ public class MotorCoverService {
     
 
 
-    public MotorCover addMotorCover (HttpSession session, MotorCover motorCover, Integer vehicleId){
-        User currentUser = (User) session.getAttribute("user");
+    public MotorCover addMotorCover ( MotorCover motorCover, Integer vehicleId){
+         CustomUserDetails foundUser = CustomUserDetails.getCurrentUser();
+        User currentUser = foundUser.getUser();
         User user = userRepository.findBynationalId(currentUser.getNationalId());
 
 
@@ -43,13 +45,21 @@ public class MotorCoverService {
         do {
             randomValue = 100_000 + new Random().nextInt(900_000);
         } while (motorCoverRepository.existsBymotorId(randomValue));
+        
+         String randomString;
+        do {
+            randomValue = 100_000 + new Random().nextInt(900_000);
+           randomString = "VIM" + String.valueOf(100_000 + new Random().nextInt(900_000));
+            
+         } while (motorCoverRepository.existsBypolicyNumber(randomString));
+
+motorCover.setPolicyNumber(randomString);
         motorCover.setRegistrationNumber(foundvehicle.getRegistrationNumber());
         motorCover.setMotorId(randomValue);
          motorCover.setVehicle(foundvehicle);
           motorCover.setUser(user);
                  }
                  else {
-                     System.out.println("Vehicle not found for the authenticated user with ID: " + vehicleId);
                  }
       
    

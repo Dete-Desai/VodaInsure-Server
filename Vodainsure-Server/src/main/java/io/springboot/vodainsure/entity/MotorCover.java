@@ -17,10 +17,11 @@ import lombok.Setter;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MotorCover {
-    @Id
-    @Getter
+ @Getter
     @Setter
+public class MotorCover {   
+    @Id
+
     private int motorId;
 
     @ManyToOne
@@ -28,35 +29,26 @@ public class MotorCover {
     @JsonBackReference 
     private User user;
 
-    @Getter
-    @Setter
+
     @OneToOne
     @JoinColumn(name = "vehicleId")
     private Vehicle vehicle;
 
-    @Getter
-    @Setter
+
     private String registrationNumber;
-    @Getter
-    @Setter
+
     private String policyNumber;
 
-     @Getter
-    @Setter
-    private LocalDate coverExpiryDate;
+ 
+    private String coverExpiryDate;
 
-    @Getter
-    @Setter
-     private LocalDate coverRenewalDate;
 
-     @Getter
-    @Setter
+     private String coverRenewalDate;
+
+ 
      private String coverType;
 
-    @Getter
-    @Setter
-    @JsonManagedReference
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "motorCover", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<MotorClaim> motorClaims = new ArrayList<>();
+
+
 
 }

@@ -45,7 +45,7 @@ public class SpringConfiguration {
       @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/users/register1","/authenticate","users/authenticate2","/users/", "/users/user/save", "/product/all").permitAll()
+                        .requestMatchers("/users/register","users/authenticate", "/users/user/save").permitAll()
                         .anyRequest().authenticated())
                 .httpBasic(withDefaults())
                 .formLogin(withDefaults())

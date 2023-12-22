@@ -24,66 +24,42 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
     @Id
-    @Getter
-    @Setter
+
     private int nationalId;
-    
-    @Getter
-    @Setter
+
     private String fullName;
-    @Getter
-    @Setter
+
     private String email;
-    @Getter
-    @Setter
-   
+
     private String phoneNumber;
-    @Getter
-    @Setter
-    
+
     private String country;
-   
-    @Getter
-    @Setter
      
     private String password;
 
-    @Getter
-    @Setter
+
     @JsonIgnore
     private String roles = "ROLE_USER";
 
 
-     @Getter
-    @Setter    
+
      @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
      @JsonManagedReference 
      private List<Vehicle> vehicles = new ArrayList<>();
 
-    @Getter
-    @Setter
+
     @JsonManagedReference 
      @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MotorCover> motorCovers = new ArrayList<>();
 
-    @Getter
-    @Setter
-    @JsonManagedReference 
-     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<SelfMedicalCover> selfMedicalCovers = new ArrayList<>();
-
-     @Getter
-    @Setter
-    @JsonManagedReference 
-     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CorporateMedicalCover> corporateMedicalCovers = new ArrayList<>();
-
-
-
+    @JsonManagedReference
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MotorClaim> motorClaims = new ArrayList<>();
 
 }

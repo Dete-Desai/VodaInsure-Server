@@ -1,9 +1,11 @@
 package io.springboot.vodainsure.service;
 
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import io.springboot.vodainsure.repository.MotorCoverRepository;
 import io.springboot.vodainsure.repository.UserRepository;
@@ -11,6 +13,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import io.springboot.vodainsure.config.CustomUserDetails;
 // import io.springboot.vodainsure.config.MyUserDetails;
 import io.springboot.vodainsure.entity.MotorClaim;
 import io.springboot.vodainsure.entity.MotorCover;
@@ -29,8 +32,9 @@ public class MotorClaimService {
 
     @Autowired
     private MotorCoverRepository motorCoverRepository;
-public MotorClaim addMotorClaim (HttpSession session, MotorClaim motorClaim, Integer motorId){
-    User currentUser = (User) session.getAttribute("user");
+public MotorClaim addMotorClaim ( MotorClaim motorClaim, Integer motorId){
+     CustomUserDetails foundUser = CustomUserDetails.getCurrentUser();
+        User currentUser = foundUser.getUser();
     User user = userRepository.findBynationalId(currentUser.getNationalId());
 
       Optional<MotorCover> optionalMotorCover = user.getMotorCovers().stream()
@@ -44,10 +48,9 @@ public MotorClaim addMotorClaim (HttpSession session, MotorClaim motorClaim, Int
             randomValue = 100_000 + new Random().nextInt(900_000);
         } while (motorClaimRepository.existsBymotorClaimId(randomValue));
 
-        motorClaim.setMotorCover(foundMotorCover);
-        motorClaim.setNationalId(user.getNationalId());
-        motorClaim.setCoverType(foundMotorCover.getCoverType());
+        motorClaim.setMotorId(foundMotorCover.getMotorId());
         motorClaim.setPolicyNumber(foundMotorCover.getPolicyNumber());
+        motorClaim.setUser(user);
         motorClaim.setMake(coveredVehicle.getMake());
         motorClaim.setMotorClaimId(randomValue);
         motorClaim.setDriverId(coveredVehicle.getDriverId());
@@ -69,10 +72,11 @@ public MotorClaim addMotorClaim (HttpSession session, MotorClaim motorClaim, Int
             return null;
         }
     }
-    public List<MotorClaim> getMotorClaims(Integer motorId){
-        MotorCover motorCover = motorCoverRepository.findByMotorId(motorId);
-        if (motorCover != null){
-            List<MotorClaim> userMotorClaims = motorCover.getMotorClaims();
+    public List<MotorClaim> getMotorClaims(Integer nationalId){
+
+        User user = userRepository.findBynationalId(nationalId);
+        if (user != null){
+        List<MotorClaim> userMotorClaims = user.getMotorClaims();
             return  userMotorClaims;
         }else {
             return null;
