@@ -21,7 +21,6 @@ import lombok.Setter;
     @Setter
 public class MotorCover {   
     @Id
-
     private int motorId;
 
     @ManyToOne

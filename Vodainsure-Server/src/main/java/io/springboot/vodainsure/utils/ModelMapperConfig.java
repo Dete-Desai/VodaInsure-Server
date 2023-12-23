@@ -1,4 +1,4 @@
-package io.springboot.vodainsure.service;
+package io.springboot.vodainsure.utils;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

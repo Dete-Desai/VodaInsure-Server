@@ -1,23 +1,15 @@
 package io.springboot.vodainsure.service;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.Map;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.security.core.context.SecurityContext;
 // import org.springframework.security.core.context.SecurityContextHolder;
 // // import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 // import org.springframework.security.crypto.password.PasswordEncoder;
-import io.springboot.vodainsure.exception.UserNotFoundException;
 import io.springboot.vodainsure.config.CustomUserDetails;
 import io.springboot.vodainsure.dto.AuthRequest;
 import io.springboot.vodainsure.dto.UserDTO;
@@ -30,7 +22,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.authentication.AuthenticationManager;
 import io.springboot.vodainsure.repository.UserRepository;
 import jakarta.servlet.http.HttpSession;
-import io.springboot.vodainsure.service.ModelMapperConfig;
 
 @Service
 public class UserService {

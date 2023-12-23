@@ -3,23 +3,20 @@ package io.springboot.vodainsure.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.springboot.vodainsure.utils.CustomDateDeserializer;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
 import java.time.LocalDate;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @Entity
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 public class MotorClaim {
 
     @Id
     private int motorClaimId;
-
-
-
 
     @ManyToOne
     @JoinColumn(name = "nationalId")
@@ -28,20 +25,15 @@ public class MotorClaim {
 
     private int motorId;
 
-
     private String policyNumber;
-
 
     private String claimType;
 
-    @JsonDeserialize(using = CustomDateDeserializer.class)
-    private LocalDate claimDate;
+    private String claimDate;
 
-    @JsonDeserialize(using = CustomDateDeserializer.class)
-    private LocalDate expiryDate;
+    private String expiryDate;
 
-    @JsonDeserialize(using = CustomDateDeserializer.class)
-    private LocalDate clashDate;
+    private String clashDate;
 
     private String make;
 

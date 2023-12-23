@@ -63,6 +63,7 @@ import io.springboot.vodainsure.config.CustomUserDetails;
      }
 
 
+
      public Vehicle updateVehicle( Vehicle updatedVehicle, Integer vehicleId) {
 
             Vehicle existingVehicle = vehicleRepository.findById(vehicleId).orElse(null);
